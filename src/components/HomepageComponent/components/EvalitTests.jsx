@@ -5,10 +5,10 @@ const EvalitTests = () => {
     <div className="flex justify-center -z-20 mt-10">
       <div className="flex justify-evenly w-full flex-col lg:flex-row overflow-hidden ">
         <div className="flex flex-col justify-center items-center lg:w-1/2   font-karma text-center" data-aos="flip-left"
-          data-aos-duration="1000"
+          data-aos-duration="800"
         >
           <div className="flex gap-10 flex-col items-center">
-          <h1 className="lg:text-[2rem] text-2xl text-secondary font-bold font-karma  tracking-wider  lg:p-0 lg:w-2/3 leading-[50px]">
+          <h1 className="lg:text-[2rem] text-2xl text-secondary font-bold font-karma  tracking-wider w-3/4 lg:p-0 lg:w-2/3 leading-[50px]">
               Pre-configured tests designed by experienced developers
             </h1>
             <p className="text-gray-55 text-2xl tracking-wide w-3/4 font-medium leading-10">
@@ -29,8 +29,8 @@ const EvalitTests = () => {
             </div>
           </div>
         </div>
-        <div className="flex flex-col justify-center gap-2 lg:w-1/2 w-full font-karma " data-aos="flip-right">
-          <div className="overflow-x-auto font-karam flex w-full justify-center">
+        <div className="lg:flex flex-col justify-center gap-2 lg:w-1/2 w-full font-karma hidden " data-aos="flip-right">
+          <div className="overflow-x-auto font-karam flex lg:w-full flex-col items-center justify-center w-1/2 ">
             <table className="w-4/5 text-sm text-left mb-20">
               <thead className="text-md font-light bg-tertiary ">
                 <tr>

@@ -31,7 +31,7 @@ const Sponsors = () => {
   ];
 
   return (
-    <div className="flex justify-center items-center  flex-col gap-10">
+    <div className="flex justify-center items-center  flex-col gap-10 mt-10">
       <div className='text-center'>
         <h1 className="text-lg text-gray-55 font-bold font-karma tracking-wider">
           Helping

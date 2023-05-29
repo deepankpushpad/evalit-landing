@@ -2,7 +2,7 @@ import React from 'react';
 import images from '../../../constants/imageConstant';
 const Role = () => {
   return (
-    <div className="flex justify-center ">
+    <div className="flex justify-center mt-10">
       <div className="flex justify-evenly w-full lg:flex-row flex-col">
         <div className="flex flex-col justify-center items-center lg:w-1/2 lg:p-14 gap-10 font-karma text-center" data-aos="flip-up" data-aos-duration="800">
         <h1 className="lg:text-[2rem] text-2xl text-secondary font-bold font-karma  tracking-wider  lg:p-0 lg:w-2/3 leading-[50px]">

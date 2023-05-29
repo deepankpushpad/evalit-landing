@@ -50,7 +50,7 @@ const TabsSection = () => {
         {
           componentData.map((item, index) => {
               return (
-                <>
+                <div className='flex flex-col items-center w-full mt-10'>
                 <hr className="border-1 border-primary w-4/5" />
                 <h1
                   className="text-center text-3xl font-light font-roboto text-black p-4"
@@ -60,7 +60,7 @@ const TabsSection = () => {
                 </h1>
                 <hr className="border-1 border-primary w-4/5" />
                 {item.content}
-                </>
+                </div>
               );
             })
         }

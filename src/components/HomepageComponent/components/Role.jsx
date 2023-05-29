@@ -11,7 +11,7 @@ const Role = ({ref}) => {
         <h1 className="lg:text-[2rem] text-2xl text-secondary font-bold font-karma  tracking-wider  lg:p-0 lg:w-2/3 leading-[50px]">
           Different assessments for different roles.
         </h1>
-        <p className="text-gray-55 text-2xl tracking-wide lg:w-3/5 font-medium">
+        <p className="text-gray-55 text-2xl tracking-wide w-3/4 font-medium leading-10">
           We have carefully categorised different roles to recommend you the
           most appropriate tests.
         </p>
