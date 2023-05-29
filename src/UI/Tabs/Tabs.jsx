@@ -8,20 +8,20 @@ import Role from '../../components/HomepageComponent/components/Role';
 import EvalitTests from '../../components/HomepageComponent/components/EvalitTests';
 import Settings from '../../components/HomepageComponent/components/Settings';
 import Share from '../../components/HomepageComponent/components/Share';
-import posed from 'react-pose';
-const Text = posed.div({
-  enter: {
-    delay: 500,
-    opacity: 1,
-    transition: { type: 'spring', stiffness: 20 },
-    y: 0,
-  },
-  exit: {
-    delay: 500,
-    opacity: 0,
-    y: 80,
-  },
-});
+// import posed from 'react-pose';
+// const Text = posed.div({
+//   enter: {
+//     delay: 500,
+//     opacity: 1,
+//     transition: { type: 'spring', stiffness: 20 },
+//     y: 0,
+//   },
+//   exit: {
+//     delay: 500,
+//     opacity: 0,
+//     y: 80,
+//   },
+// });
 const chapters = [
   {
     title: 'Role',
@@ -120,11 +120,11 @@ export default function BasicTabs() {
       <div className="w-full lg:container">
         <Box ref={ref}>
           {chapters.map((chapter, index) => (
-            <Text pose={chapter.title ? 'enter' : 'exit'}>
+
               <TabPanel value={value} index={index} key={index}>
                 {chapter.content}
               </TabPanel>
-            </Text>
+
           ))}
         </Box>
       </div>
