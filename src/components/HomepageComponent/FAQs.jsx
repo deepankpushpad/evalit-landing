@@ -43,13 +43,21 @@ const FAQs = () => {
   return (
     <div className="flex flex-col lg:mt-40">
       <div className="flex w-full lg:pl-32 pl-10">
-      <h1 className="lg:text-4xl text-3xl text-primary font-bold font-roboto lg:p-0 p-2 tracking-widest">
+        <h1
+          className="lg:text-4xl text-3xl text-primary font-bold font-roboto lg:p-0 p-2 tracking-widest  "
+          style={{
+            textShadow: '0px 1px, 1px 0px, 1px 0px',
+          }}
+        >
           You might be thinking ...
         </h1>
       </div>
       <div className="lg:text-left p-10 lg:p-20 flex flex-col gap-8">
-        {faqsData.map((faq,i) => (
-          <div className="flex flex-col   lg:ml-10 p-2 gap-6     font-karma " key={i}>
+        {faqsData.map((faq, i) => (
+          <div
+            className="flex flex-col   lg:ml-10 p-2 gap-6     font-karma "
+            key={i}
+          >
             <h1 className="text-2xl text-secondary font-bold font-karma  ">
               {faq.question}
             </h1>

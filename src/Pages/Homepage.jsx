@@ -12,7 +12,7 @@ const Homepage = () => {
         <Sponsors />
         <div  id="how-does-it-work"></div>
         <HowDoesItWork />
-        <div id="superpowers" className='lg:mb-0 mb-24'></div>
+        <div id="superpowers" className='lg:mb-0 mb-24 '></div>
         <Superpowers />
         <div id="faqs" className='lg:mb-0 mb-24'></div>
         <FAQs />

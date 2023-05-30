@@ -26,3 +26,24 @@
   .container::-webkit-scrollbar-thumb {
     background-color: transparent;
   } */
+
+  .item {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  .sidebar {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+  }
+
+  .is-sticky {
+    position: fixed;
+    top: 10px;
+    z-index: 999;
+    animation: 500ms ease-in-out 0s normal none 1 running fadeInDown;
+  }
+

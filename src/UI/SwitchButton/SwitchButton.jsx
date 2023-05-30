@@ -1,18 +1,13 @@
 import React, { useState } from 'react';
 import './SwitchButton.css'
-const SwitchButton = () => {
-  const [isChecked, setIsChecked] = useState(false);
+const SwitchButton = ({isChecked}) => {
 
-  const handleToggle = () => {
-    setIsChecked(!isChecked);
-  };
 
   return (
     <label className="switch">
       <input
         checked={isChecked}
         type="checkbox"
-        onChange={handleToggle}
       />
       <div className="slider">
         <div className="circle">

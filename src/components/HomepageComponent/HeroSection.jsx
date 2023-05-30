@@ -4,7 +4,15 @@ const HeroSection = () => {
   return (
     <div className="flex justify-center items-center lg:mt-40 flex-col gap-10 mt-28">
       <div className="text-center">
-        <h1 className="lg:text-4xl text-4xl text-primary font-bold font-roboto lg:p-0 p-2 tracking-widest">
+        <h1
+          className="lg:text-4xl text-4xl text-primary font-bold font-roboto lg:p-0 p-2 tracking-widest
+
+        leading-[50px]
+          "
+          style={{
+            textShadow: '0px 1px, 1px 0px, 1px 0px',
+          }}
+        >
           Never pay for hiring
         </h1>
       </div>
@@ -22,9 +30,9 @@ const HeroSection = () => {
         </p>
       </div>
       <div className="flex justify-center items-center gap-10">
-        <button className="bg-primary text-white rounded-xl w-40 font-karma font-bold p-3">
-          Screen for free!
-        </button>
+        <div className="bg-primary text-white rounded-xl w-40 font-karma font-bold p-3 flex justify-center items-center">
+         <span>Screen for free!</span>
+        </div>
       </div>
     </div>
   );

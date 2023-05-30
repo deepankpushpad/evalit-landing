@@ -26,8 +26,10 @@ const Superpowers = () => {
 
   return (
     <div>
-      <div className='flex justify-center items-center lg:mt-40'>
-        <h1 className="lg:text-4xl text-3xl text-primary font-bold font-roboto lg:p-0 p-2 tracking-widest text-center">
+      <div className='flex justify-center items-center lg:mt-40' >
+        <h1 className="lg:text-4xl text-3xl text-primary font-bold font-roboto lg:p-0 p-2 tracking-widest text-center  leading-[50px]"  style={{
+            textShadow: '0px 1px, 1px 0px, 1px 0px',
+          }}>
           Robust invigilation checks
         </h1>
       </div>

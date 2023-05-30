@@ -39,12 +39,12 @@ const Sponsors = () => {
           organisations with faster hiring.
         </h1>
       </div>
-      <div className="grid sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 lg:ap-10 xs:grid-cols-2  gap-4">
+      <div className="flex justify-around lg:w-3/5  flex-wrap">
         {SponsorsData.map((item) => {
           return (
             <div
               key={item.id}
-              className="flex justify-center items-center w-full "
+              className="flex justify-center items-center p-4 "
             >
               <img
                 src={item.image}

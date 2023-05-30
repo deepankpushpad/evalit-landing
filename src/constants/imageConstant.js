@@ -15,6 +15,10 @@ import directi from '../assets/images/directi.png';
 import pwc from '../assets/images/pwc.png';
 import walmart from '../assets/images/walmart.png';
 import mouse from '../assets/images/mouse.png';
+import roles from '../assets/images/roles.png';
+import tests from '../assets/images/tests.png';
+import share from '../assets/images/share.png';
+import settings from '../assets/images/settings.png';
 export default  {
     Zomato,
     Pepsi,
@@ -32,5 +36,9 @@ export default  {
     directi,
     pwc,
     walmart,
-    mouse
+    mouse,
+    roles,
+    tests,
+    share,
+    settings
 };

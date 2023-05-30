@@ -1,28 +1,44 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import images from '../../../constants/imageConstant';
 const EvalitTests = () => {
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const titleElement = document.getElementById('evalit_tests');
+
+      if (titleElement) {
+        const titlePosition = titleElement.offsetTop;
+        if(scrollPosition >= titlePosition -130 ){
+          console.log('You have scrolled to the evalit section');
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
   return (
-    <div className="flex justify-center -z-20 mt-10">
+    <div className="flex justify-center -z-20 mt-10" id={'evalit_tests'}>
       <div className="flex justify-evenly w-full flex-col lg:flex-row overflow-hidden ">
         <div className="flex flex-col justify-center items-center lg:w-1/2   font-karma text-center" data-aos="flip-left"
           data-aos-duration="800"
         >
           <div className="flex gap-10 flex-col items-center">
-          <h1 className="lg:text-[2rem] text-2xl text-secondary font-bold font-karma  tracking-wider w-3/4 lg:p-0 lg:w-2/3 leading-[50px]">
+          <h1 className="lg:text-[2rem] text-[1.7rem] text-secondary font-bold font-karma  tracking-wider w-full lg:p-0 lg:w-2/3 lg:leading-[50px]">
               Pre-configured tests designed by experienced developers
             </h1>
-            <p className="text-gray-55 text-2xl tracking-wide w-3/4 font-medium leading-10">
+            <p className="text-gray-55 lg:text-[1.3rem] text-[1.2rem]  tracking-wide w-3/4 font-medium lg:leading-10 leading-0">
               We have tests designed and updated by professional coders working
               in the industry.
             </p>
           </div>
           <div className="flex flex-col  justify-start w-2/3">
-            <div className="w-1/2 flex p-2">
+            <div className="w-1/2 flex p-2 justify-center ml-4">
               <img src={images.amazon} alt="evalitTests1" className='w-36 aspect-auto '/>
               <img src={images.directi} alt="evalitTests2" className='w-36 aspect-auto '/>
-              <div></div>
+
             </div>
-            <div className="w-full flex justify-end p-2">
+            <div className="w-full flex justify-end lg:p-2 ml-16 lg:ml-0">
 
               <img src={images.walmart} alt="evalitTests3" className='w-36 aspect-auto '/>
               <img src={images.pwc} alt="evalitTests4" className='w-36 aspect-auto '/>
