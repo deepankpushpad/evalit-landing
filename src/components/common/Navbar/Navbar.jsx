@@ -28,7 +28,7 @@ const Navbar = () => {
                 className="font-kalam text-2xl text-gray-700 hover:text-gray-900 font-semibold"
                 key={index}
                 onClick={() => {
-                  item.id === 'superpowers' ? navigate(`${item.id}`, 150) : item.id === 'faqs' ? navigate(`${item.id}`, 100) : navigate(`${item.id}`);
+                  item.id === 'superpowers' ? navigate(`${item.id}`,10) : item.id === 'faqs' ? navigate(`${item.id}`, 10) : navigate(`${item.id}`);
                 }}
               >
                 {item.title}

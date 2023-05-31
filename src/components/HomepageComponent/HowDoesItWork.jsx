@@ -14,6 +14,7 @@ const TabsSection = () => {
   const [isShareActive, setIsShareActive] = useState(false);
   const [scrollDirection, setScrollDirection] = useState('down');
   const [isMobile, setIsMobile] = useState(false);
+  const [isSuperPowerActive, setIsSuperPowerActive] = useState(false);
   useEffect(() => {
     let prevScrollPosition = window.pageYOffset;
 
@@ -23,27 +24,39 @@ const TabsSection = () => {
       prevScrollPosition = currentScrollPosition;
       const scrollPosition = window.scrollY;
       const titleElement = document.getElementById('sectionTitle');
+      //if its above the section setAll States to default
+      if (scrollPosition < 1200) {
+        console.log('above section');
+        setIsRoleActive(false);
+        setIsEvalitActive(false);
+        setIsSettingsActive(false);
+        setIsShareActive(false);
+        setIsSuperPowerActive(false);
+        setActiveTab(-1);
+        setIsTitleFixed(false);
+        setIsMobile(false);
+        return;
+      }
       setScrollDirection(currentScrollDirection);
 
       if (titleElement) {
         const titlePosition = titleElement.offsetTop;
-        //if
-        //if window mode than - 30
+        if(!isSuperPowerActive){
         if (window.innerWidth < 1024) {
           setIsTitleFixed(scrollPosition >= titlePosition + 65);
           setIsMobile(true);
           return;
         }
         setIsTitleFixed(scrollPosition >= titlePosition - 30);
+
       }
-
-
+    }
 
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [scrollDirection ,activeTab,isTitleFixed]);
+  }, [scrollDirection ,activeTab,isTitleFixed,isSuperPowerActive]);
 
   const handleTabChange = () => {
     if(scrollDirection === 'down'){
@@ -75,6 +88,7 @@ const TabsSection = () => {
     isEvalitActive,
     isSettingsActive,
     isShareActive,
+    isSuperPowerActive,
     scrollDirection,
   ]);
   const componentData = [
@@ -219,7 +233,13 @@ const TabsSection = () => {
             isRoleActive={isRoleActive}
             setIsRoleActive={setIsRoleActive}
             scrollDirection={scrollDirection}
+            setIsTitleFixed={setIsTitleFixed}
+            isTitleFixed={isTitleFixed}
+            setIsSuperPowerActive={setIsSuperPowerActive}
+            isSuperPowerActive={isSuperPowerActive}
+
           />
+
         </div>
         <div className="flex justify-center items-center w-full mt-10 ">
           <EvalitTests
@@ -247,6 +267,9 @@ const TabsSection = () => {
             setIsShareActive={setIsShareActive}
             scrollDirection={scrollDirection}
             setIsTitleFixed={setIsTitleFixed}
+            isTitleFixed={isTitleFixed}
+            setIsSuperPowerActive={setIsSuperPowerActive}
+            isSuperPowerActive={isSuperPowerActive}
           />
         </div>
       </div>
