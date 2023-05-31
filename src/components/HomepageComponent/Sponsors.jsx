@@ -33,7 +33,7 @@ const Sponsors = () => {
   return (
     <div className="flex justify-center items-center  flex-col gap-10 mt-10">
       <div className='text-center'>
-        <h1 className="text-lg text-gray-55 font-bold font-karma tracking-wider">
+        <h1 className="text-lg text-gray-55 font-bold font-karma tracking-wider p-4">
           Helping
           <span className="font-bold text-black"> 100+ </span>
           organisations with faster hiring.

@@ -25,8 +25,7 @@ const TabsSection = () => {
       const scrollPosition = window.scrollY;
       const titleElement = document.getElementById('sectionTitle');
       //if its above the section setAll States to default
-      if (scrollPosition < 1200) {
-        console.log('above section');
+      if (scrollPosition < 1200 && isMobile) {
         setIsRoleActive(false);
         setIsEvalitActive(false);
         setIsSettingsActive(false);
@@ -35,6 +34,17 @@ const TabsSection = () => {
         setActiveTab(-1);
         setIsTitleFixed(false);
         setIsMobile(false);
+        return;
+      }
+      if(!isMobile && scrollPosition < 800){
+        console.log("here");
+        setIsRoleActive(false);
+        setIsEvalitActive(false);
+        setIsSettingsActive(false);
+        setIsShareActive(false);
+        setIsSuperPowerActive(false);
+        setActiveTab(-1);
+        setIsTitleFixed(false);
         return;
       }
       setScrollDirection(currentScrollDirection);
@@ -199,15 +209,16 @@ const TabsSection = () => {
                           isTitleFixed && 'text-lg '
                         }
 
+
                         ${
                           activeTab === 0 && item.title === 'Roles'
-                            ? 'scale-150  p-2 ' + isTitleFixed ? ' m-2 scale-125' : 'border-none'
+                            ? 'scale-150  p-2 ' + isTitleFixed ? ' m-2 scale-125  lg:p-2 font-bold bg-clip-text bg-gradient-primary text-transparent font-kalam text-3xl ' : 'border-none'
                             : activeTab === 1 && item.title === 'Evalit Tests'
-                            ? 'scale-150  p-2 ' + isTitleFixed ? ' m-2 scale-125' : 'border-none'
+                            ? 'scale-150  p-2 ' + isTitleFixed ? ' m-2 scale-125 lg:p-2 font-bold bg-clip-text bg-gradient-primary text-transparent font-kalam text-3xl' : 'border-none'
                             : activeTab === 2 && item.title === 'Settings'
-                            ? 'scale-150  p-2 ' + isTitleFixed ? ' m-2 scale-125' : 'border-none'
+                            ? 'scale-150  p-2 ' + isTitleFixed ? ' m-2 scale-125 lg:p-2 font-bold bg-clip-text bg-gradient-primary text-transparent font-kalam text-3xl' : 'border-none'
                             : activeTab === 3 && item.title === 'Share'
-                            ? 'scale-150  p-2 ' + isTitleFixed ? ' m-2 scale-125' : 'border-none'
+                            ? 'scale-150  p-2 ' + isTitleFixed ? ' m-2 scale-125 lg:p-2 font-bold bg-clip-text bg-gradient-primary text-transparent font-kalam text-3xl' : 'border-none'
                             : 'scale-100 border-none'
                         }
 
