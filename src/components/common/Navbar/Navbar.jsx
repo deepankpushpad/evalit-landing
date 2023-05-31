@@ -82,7 +82,7 @@ const Navbar = () => {
             </p>
           );
         })}
-        <button className="bg-primary text-white rounded-3xl w-32 p-2">
+        <button className="bg-primary text-white rounded-3xl w-32 p-2 text-bold">
           Get Started
         </button>
       </div>
