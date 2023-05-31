@@ -1,27 +1,31 @@
 import React, { useEffect } from 'react';
 import images from '../../../constants/imageConstant';
-const Share = ({isShareActive,setIsShareActive,scrollDirection,setActiveTab}) => {
+const Share = ({isShareActive,setIsShareActive,scrollDirection,setActiveTab,activeTab,setIsTitleFixed}) => {
   useEffect(() => {
     const handleScroll = () => {
-      console.log('scrollDirection', scrollDirection);
+
       const scrollPosition = window.scrollY;
       const titleElement = document.getElementById('share');
 
       if (titleElement) {
         const titlePosition = titleElement.offsetTop;
 
-        if (scrollPosition >= titlePosition - 130 && scrollDirection === 'down') {
+        if (scrollPosition >= titlePosition - 200 && scrollDirection === 'down') {
           setIsShareActive(true);
-        } else if ( scrollDirection === 'up' && scrollPosition < titlePosition - 150) {
-          setIsShareActive(false);
+        } else if ( scrollDirection === 'up' && scrollPosition < titlePosition - 150 && activeTab === 3) {
           setActiveTab(2);
+          setIsShareActive(false);
+        }
+        if (scrollPosition >= titlePosition + 300 && scrollDirection === 'down') {
+            setIsTitleFixed(false);
         }
       }
+      //if its 200px down from titleElment then alert
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [isShareActive, scrollDirection]);
+  }, [isShareActive, scrollDirection,activeTab]);
 
   return (
     <div className="flex justify-center mt-10" id="share">

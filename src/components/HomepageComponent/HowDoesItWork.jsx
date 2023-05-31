@@ -13,6 +13,7 @@ const TabsSection = () => {
   const [isSettingsActive, setIsSettingsActive] = useState(false);
   const [isShareActive, setIsShareActive] = useState(false);
   const [scrollDirection, setScrollDirection] = useState('down');
+  const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
     let prevScrollPosition = window.pageYOffset;
 
@@ -30,6 +31,7 @@ const TabsSection = () => {
         //if window mode than - 30
         if (window.innerWidth < 1024) {
           setIsTitleFixed(scrollPosition >= titlePosition + 65);
+          setIsMobile(true);
           return;
         }
         setIsTitleFixed(scrollPosition >= titlePosition - 30);
@@ -41,7 +43,7 @@ const TabsSection = () => {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [scrollDirection ]);
+  }, [scrollDirection ,activeTab,isTitleFixed]);
 
   const handleTabChange = () => {
     if(scrollDirection === 'down'){
@@ -49,24 +51,24 @@ const TabsSection = () => {
       isRoleActive &&
       !isEvalitActive &&
       !isSettingsActive &&
-      !isShareActive
+      !isShareActive &&
+      activeTab === -1
     ) {
       setActiveTab(0);
     }
-    if (isRoleActive && isEvalitActive && !isSettingsActive && !isShareActive) {
+    if (isRoleActive && isEvalitActive && !isSettingsActive && !isShareActive && scrollDirection === 'down' && activeTab === 0) {
       setActiveTab(1);
     }
-    if (isRoleActive && isEvalitActive && isSettingsActive && !isShareActive) {
+    if (isRoleActive && isEvalitActive && isSettingsActive && !isShareActive && scrollDirection === 'down' && activeTab === 1) {
       setActiveTab(2);
     }
-    if (isRoleActive && isEvalitActive && isSettingsActive && isShareActive) {
+    if (isRoleActive && isEvalitActive && isSettingsActive && isShareActive && scrollDirection === 'down' && activeTab === 2) {
       setActiveTab(3);
     }
   }
   };
   useEffect(() => {
     handleTabChange();
-    console.log('activeTab', activeTab);
   }, [
     activeTab,
     isRoleActive,
@@ -109,8 +111,10 @@ const TabsSection = () => {
             'fixed top-0 left-0 right-0 bg-white z-10 shadow-md mt-16 lg:mt-28 border-t-[1px] lg:border-gray-72'
           } `}
         >
+      {isTitleFixed && (
           <div className="flex justify-center items-center w-full ">
             <div className="flex justify-center items-center w-full ">
+
               <ul className="flex justify-between items-center w-full  lg:justify-evenly ">
                 {componentData.map((item, index) => {
                   return (
@@ -126,9 +130,46 @@ const TabsSection = () => {
                       data-aos-duration="1000"
                       data-aos-easing="ease-in-out"
                       onClick={() => {
-                        navigate(`${item.id}`, 270);
+                        // navigate(`${item.id}`, 170);
+                        if(isMobile){
+                        if(item.title === 'Roles')
+                        {
+                          navigate(`${item.id}`, 170);
+                        }
+                        else if(item.title === 'Evalit Tests')
+                        {
+                          navigate(`${item.id}`, 270);
+                        }
+                        else if(item.title === 'Settings')
+                        {
+                          navigate(`${item.id}`, 170);
+                        }
+                        else if(item.title === 'Share')
+                        {
+                          navigate(`${item.id}`, 170);
+                        }
+                        }
+                        else{
+                          navigate(`${item.id}`, 170);
+                        }
+
                       }}
                     >
+                    <div className={`flex justify-center items-center flex-col lg:flex-row  ${
+                          activeTab === 0 && item.title === 'Roles'
+                            ? 'scale-150  p-2 ' + isTitleFixed ? ' m-2 scale-125' : 'border-none'
+                            : activeTab === 1 && item.title === 'Evalit Tests'
+                            ? 'scale-150  p-2 ' + isTitleFixed ? ' m-2 scale-125' : 'border-none'
+                            : activeTab === 2 && item.title === 'Settings'
+                            ? 'scale-150  p-2 ' + isTitleFixed ? ' m-2 scale-125' : 'border-none'
+                            : activeTab === 3 && item.title === 'Share'
+                            ? 'scale-150  p-2 ' + isTitleFixed ? ' m-2 scale-125' : 'border-none'
+                            : 'scale-100 border-none'
+                        }`}
+
+                    >
+
+
                       <img
                         src={item.image}
                         alt="icon"
@@ -136,32 +177,40 @@ const TabsSection = () => {
                           isTitleFixed ? 'aspect-auto w-[50px] ' : 'aspect-auto lg:w-[100px] w-[40px] '
                         }
 
-                        ${
-                          activeTab === 0 && item.title === 'Roles'
-                            ? 'scale-150  p-2 ' + isTitleFixed ? 'border-2 border-gray-72 ease-in-out duration-500 rounded-xl m-2 scale-125' : 'border-none'
-                            : activeTab === 1 && item.title === 'Evalit Tests'
-                            ? 'scale-150  p-2 ' + isTitleFixed ? 'border-2 border-gray-72 ease-in-out duration-200 rounded-xl m-2 scale-125' : 'border-none'
-                            : activeTab === 2 && item.title === 'Settings'
-                            ? 'scale-150  p-2 ' + isTitleFixed ? 'border-2 border-gray-72 ease-in-out duration-500 rounded-xl m-2 scale-125' : 'border-none'
-                            : activeTab === 3 && item.title === 'Share'
-                            ? 'scale-150  p-2 ' + isTitleFixed ? 'border-2 border-gray-72 ease-in-out duration-500 rounded-xl m-2 scale-125' : 'border-none'
-                            : 'scale-100 border-none'
-                        }`}
+  `}
                       />
                       <p
                         // className="lg:text-2xl text-lg font-light font-roboto text-secondary  ml-2 mr-2 cursor-pointer  flex justify-center items-center  "
                         className={`ml-2 mr-2 ${
-                          isTitleFixed && 'text-lg hidden'
-                        } `}
+                          isTitleFixed && 'text-lg '
+                        }
+
+                        ${
+                          activeTab === 0 && item.title === 'Roles'
+                            ? 'scale-150  p-2 ' + isTitleFixed ? ' m-2 scale-125' : 'border-none'
+                            : activeTab === 1 && item.title === 'Evalit Tests'
+                            ? 'scale-150  p-2 ' + isTitleFixed ? ' m-2 scale-125' : 'border-none'
+                            : activeTab === 2 && item.title === 'Settings'
+                            ? 'scale-150  p-2 ' + isTitleFixed ? ' m-2 scale-125' : 'border-none'
+                            : activeTab === 3 && item.title === 'Share'
+                            ? 'scale-150  p-2 ' + isTitleFixed ? ' m-2 scale-125' : 'border-none'
+                            : 'scale-100 border-none'
+                        }
+
+                       `}
+
                       >
                         {item.title}
                       </p>
+                      </div>
                     </li>
                   );
                 })}
               </ul>
+
             </div>
           </div>
+      )}
         </div>
         <div className="flex justify-center items-center w-full mt-10 ">
           <Role
@@ -197,6 +246,7 @@ const TabsSection = () => {
             isShareActive={isShareActive}
             setIsShareActive={setIsShareActive}
             scrollDirection={scrollDirection}
+            setIsTitleFixed={setIsTitleFixed}
           />
         </div>
       </div>

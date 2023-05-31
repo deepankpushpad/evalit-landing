@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import images from '../../../constants/imageConstant';
-const EvalitTests = ({ setActiveTab, setIsEvalitActive, isEvalitActive,scrollDirection }) => {
+const EvalitTests = ({ setActiveTab, setIsEvalitActive, isEvalitActive,scrollDirection,activeTab }) => {
   // const [changedOnce, setChangedOnce] = useState(isEvalitActive);
   useEffect(() => {
     const handleScroll = () => {
@@ -9,18 +9,18 @@ const EvalitTests = ({ setActiveTab, setIsEvalitActive, isEvalitActive,scrollDir
 
       if (titleElement) {
         const titlePosition = titleElement.offsetTop;
-        if (scrollPosition >= titlePosition - 130 && scrollDirection === 'down') {
+        if (scrollPosition >= titlePosition - 200 && scrollDirection === 'down') {
           setIsEvalitActive(true);
-        } else if ( scrollDirection === 'up' && scrollPosition < titlePosition - 130) {
-          setIsEvalitActive(false);
+        } else if ( scrollDirection === 'up' && scrollPosition < titlePosition -230  && activeTab === 1) {
           setActiveTab(0);
+          setIsEvalitActive(false);
         }
       }
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [isEvalitActive,  setIsEvalitActive,scrollDirection]);
+  }, [scrollDirection,isEvalitActive,activeTab]);
   return (
     <div className="flex justify-center -z-20 mt-10" id={'evalit_tests'}>
       <div className="flex justify-evenly w-full flex-col lg:flex-row overflow-hidden ">
@@ -48,7 +48,7 @@ const EvalitTests = ({ setActiveTab, setIsEvalitActive, isEvalitActive,scrollDir
               <img
                 src={images.directi}
                 alt="evalitTests2"
-                className="w-36 aspect-auto "
+                className="w-36 aspect-auto ml-5"
               />
             </div>
             <div className="w-full flex justify-end lg:p-2 ml-16 lg:ml-0">

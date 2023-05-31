@@ -6,7 +6,6 @@ const HamBurger = ({ setShow, show }) => {
       className="burger"
       htmlFor="burger"
       onClick={() => {
-        console.log(show);
         setShow((show) => !show);
       }}
     >

@@ -1,7 +1,13 @@
-import React,{useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { BsFillGearFill } from 'react-icons/bs';
 import SwitchButton from '../../../UI/SwitchButton/SwitchButton';
-const Settings = ({setIsSettingsActive,setActiveTab,isSettingsActive,scrollDirection}) => {
+const Settings = ({
+  setIsSettingsActive,
+  setActiveTab,
+  isSettingsActive,
+  scrollDirection,
+  activeTab,
+}) => {
   const settingsData = [
     {
       title: 'Shuffle Questions',
@@ -21,26 +27,32 @@ const Settings = ({setIsSettingsActive,setActiveTab,isSettingsActive,scrollDirec
     },
   ];
 
-    useEffect(() => {
-      const handleScroll = () => {
-        const scrollPosition = window.scrollY;
-        const titleElement = document.getElementById('settings');
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const titleElement = document.getElementById('settings');
 
-        if (titleElement) {
-          const titlePosition = titleElement.offsetTop;
-          if (scrollPosition >= titlePosition - 130 && scrollDirection === 'down') {
-            setIsSettingsActive(true);
-          } else if ( scrollDirection === 'up' && scrollPosition < titlePosition - 130) {
-            setIsSettingsActive(false);
-            setActiveTab(1);
-          }
-
+      if (titleElement) {
+        const titlePosition = titleElement.offsetTop;
+        if (
+          scrollPosition >= titlePosition - 200 &&
+          scrollDirection === 'down'
+        ) {
+          setIsSettingsActive(true);
+        } else if (
+          scrollDirection === 'up' &&
+          scrollPosition < titlePosition &&
+          activeTab === 2
+        ) {
+          setActiveTab(1);
+          setIsSettingsActive(false);
         }
-      };
+      }
+    };
 
-      window.addEventListener('scroll', handleScroll);
-      return () => window.removeEventListener('scroll', handleScroll);
-    }, [isSettingsActive,scrollDirection]);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isSettingsActive, scrollDirection, activeTab]);
   return (
     <div className="flex justify-center mt-10" id="settings">
       <div className="flex justify-evenly w-full lg:flex-row flex-col lg:gap-0 gap-4">
@@ -67,8 +79,8 @@ const Settings = ({setIsSettingsActive,setActiveTab,isSettingsActive,scrollDirec
             {settingsData.map((data, index) => {
               return (
                 <React.Fragment key={index}>
-                {/* make it in the center */}
-                  <div className="flex items-center">
+                  {/* make it in the center */}
+                  <div className="flex items-center" key={index}>
                     <BsFillGearFill className="text-lg m-2 text-gray-72" />
                     <h1 className="text-center">{data.title}:</h1>
                   </div>

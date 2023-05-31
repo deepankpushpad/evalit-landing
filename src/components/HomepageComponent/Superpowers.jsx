@@ -38,7 +38,7 @@ const Superpowers = () => {
           return (
             <div
               key={item.id}
-              className="flex justify-center flex-col items-center lg:p-4 "
+              className="flex justify-center flex-col items-center lg:p-4 gap-3 "
             >
               <img src={item.image} alt={item.title} className="w-16 h-16" />
               <h1 className="text-md   font-karma text-center w-2/3">

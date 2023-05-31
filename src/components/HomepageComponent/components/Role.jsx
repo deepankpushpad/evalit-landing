@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-const Role = ({ setActiveTab, setIsRoleActive }) => {
+const Role = ({ activeTab, setIsRoleActive,isRoleActive }) => {
   //if scroll to this section then alert
 
   useEffect(() => {
@@ -19,7 +19,7 @@ const Role = ({ setActiveTab, setIsRoleActive }) => {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [setActiveTab,setIsRoleActive]);
+  }, [isRoleActive,setIsRoleActive,activeTab]);
   return (
     <div className="flex justify-center mt-10" id={'role'}>
       <div className="flex justify-evenly w-full flex-col lg:flex-row lg:gap-0 gap-10  ">

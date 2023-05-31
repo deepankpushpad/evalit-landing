@@ -22,32 +22,13 @@ const Navbar = () => {
         }}
       >
         <div className="flex flex-col justify-evenly items-center w-3/5 h-3/5  rounded-3xl">
-          {/* <a
-            href="/#how-does-it-work"
-            className="font-kalam text-2xl text-gray-700 hover:text-gray-900 font-semibold"
-          >
-            How does it work?
-          </a>
-          <a
-            href="/#superpowers"
-            className="font-kalam text-2xl text-gray-700 hover:text-gray-900 font-semibold"
-          >
-            Superpowers
-          </a>
-          <a
-            href="/#faqs"
-            className="font-kalam text-2xl text-gray-700 hover:text-gray-900 font-semibold"
-          >
-            FAQs
-          </a> */}
           {navLinks.map((item, index) => {
             return (
               <p
                 className="font-kalam text-2xl text-gray-700 hover:text-gray-900 font-semibold"
                 key={index}
                 onClick={() => {
-                  // navigate(`${item.id}`);
-                  item.id === 'superpowers' ? navigate(`${item.id}`, 120) : item.id === 'faqs' ? navigate(`${item.id}`, 130) : navigate(`${item.id}`);
+                  item.id === 'superpowers' ? navigate(`${item.id}`, 150) : item.id === 'faqs' ? navigate(`${item.id}`, 100) : navigate(`${item.id}`);
                 }}
               >
                 {item.title}
@@ -66,7 +47,7 @@ const Navbar = () => {
           <a href="/">Evalit</a>
         </h1>
       </div>
-      <div className="lg:w-4/6  items-center lg:h-28 justify-evenly lg:flex md:flex w-0 hidden h-16 md:w-4/5 z-50">
+      <div className="lg:w-4/6  items-center lg:h-28 justify-evenly lg:flex  w-0 hidden h-16 md:w-4/5 z-50">
         {navLinks.map((item, index) => {
           return (
             <p
@@ -75,7 +56,7 @@ const Navbar = () => {
               onClick={() => {
                 item.id === 'superpowers'
                   ? navigate(item.id, 150)
-                  : navigate(`${item.id}`);
+                  : navigate(`${item.id}`,50);
               }}
             >
               {item.title}
@@ -86,7 +67,7 @@ const Navbar = () => {
           Get Started
         </button>
       </div>
-      <div className="w-2/3  items-center lg:h-28  lg:hidden flex md:hidden justify-end mr-10 h-16">
+      <div className="w-2/3  items-center lg:h-28  lg:hidden flex  justify-end mr-10 h-16">
         {show ? (
           <RxCross1
             className="lg:text-4xl text-3xl text-gray-700 hover:text-gray-900 font-semibold z-50"
