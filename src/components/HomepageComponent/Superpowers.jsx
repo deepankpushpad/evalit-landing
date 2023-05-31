@@ -33,12 +33,12 @@ const Superpowers = () => {
           Robust invigilation checks
         </h1>
       </div>
-      <div className="flex justify-center items-center lg:flex-row flex-wrap mt-14">
+      <div className="flex justify-around  lg:justify-center flex-wrap gap-4 mt-10 lg:mt-16">
         {superpowersData.map((item, index) => {
           return (
             <div
-              className="flex flex-col justify-center items-center gap-6 p-10 "
-              key={index}
+              key={item.id}
+              className="flex justify-center flex-col items-center lg:p-4 "
             >
               <img src={item.image} alt={item.title} className="w-16 h-16" />
               <h1 className="text-md   font-karma text-center w-2/3">

@@ -52,16 +52,16 @@ const FAQs = () => {
           You might be thinking ...
         </h1>
       </div>
-      <div className="lg:text-left p-10 lg:p-20 flex flex-col gap-8">
+      <div className="lg:text-left p-8 lg:p-20 flex flex-col gap-8">
         {faqsData.map((faq, i) => (
           <div
             className="flex flex-col   lg:ml-10 p-2 gap-6     font-karma "
             key={i}
           >
-            <h1 className="text-2xl text-secondary font-bold font-karma  ">
+            <h1 className="lg:text-2xl text-[1.4rem] text-secondary font-bold font-karma  ">
               {faq.question}
             </h1>
-            <p className="text-lg  font-medium font-karma  tracking-widest block w-full ">
+            <p className="lg:text-lg  font-medium font-karma  tracking-widest block w-full ">
               {faq.answer}
             </p>
           </div>

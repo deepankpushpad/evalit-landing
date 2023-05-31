@@ -1,7 +1,7 @@
 import React,{useEffect} from 'react';
 import { BsFillGearFill } from 'react-icons/bs';
 import SwitchButton from '../../../UI/SwitchButton/SwitchButton';
-const Settings = () => {
+const Settings = ({setIsSettingsActive,setActiveTab,isSettingsActive,scrollDirection}) => {
   const settingsData = [
     {
       title: 'Shuffle Questions',
@@ -28,15 +28,19 @@ const Settings = () => {
 
         if (titleElement) {
           const titlePosition = titleElement.offsetTop;
-          if(scrollPosition >= titlePosition -130 ){
-            console.log('You have scrolled to the settings section');
+          if (scrollPosition >= titlePosition - 130 && scrollDirection === 'down') {
+            setIsSettingsActive(true);
+          } else if ( scrollDirection === 'up' && scrollPosition < titlePosition - 130) {
+            setIsSettingsActive(false);
+            setActiveTab(1);
           }
+
         }
       };
 
       window.addEventListener('scroll', handleScroll);
       return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+    }, [isSettingsActive,scrollDirection]);
   return (
     <div className="flex justify-center mt-10" id="settings">
       <div className="flex justify-evenly w-full lg:flex-row flex-col lg:gap-0 gap-4">

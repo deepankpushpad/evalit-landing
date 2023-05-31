@@ -2,7 +2,7 @@ import React from 'react';
 
 const HeroSection = () => {
   return (
-    <div className="flex justify-center items-center lg:mt-40 flex-col gap-10 mt-28">
+    <div className="flex justify-center items-center lg:mt-40 flex-col gap-10 mt-20">
       <div className="text-center">
         <h1
           className="lg:text-4xl text-4xl text-primary font-bold font-roboto lg:p-0 p-2 tracking-widest

@@ -1,22 +1,28 @@
 import React, { useEffect } from 'react';
 import images from '../../../constants/imageConstant';
-const Share = () => {
+const Share = ({isShareActive,setIsShareActive,scrollDirection,setActiveTab}) => {
   useEffect(() => {
     const handleScroll = () => {
+      console.log('scrollDirection', scrollDirection);
       const scrollPosition = window.scrollY;
       const titleElement = document.getElementById('share');
 
       if (titleElement) {
         const titlePosition = titleElement.offsetTop;
-        if (scrollPosition >= titlePosition - 130) {
-          console.log('You have scrolled to the share section');
+
+        if (scrollPosition >= titlePosition - 130 && scrollDirection === 'down') {
+          setIsShareActive(true);
+        } else if ( scrollDirection === 'up' && scrollPosition < titlePosition - 150) {
+          setIsShareActive(false);
+          setActiveTab(2);
         }
       }
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [isShareActive, scrollDirection]);
+
   return (
     <div className="flex justify-center mt-10" id="share">
       <div className="flex justify-evenly w-full lg:flex-row flex-col">
@@ -34,11 +40,11 @@ const Share = () => {
           </p>
         </div>
         <div
-          className="flex flex-col justify-center  lg:w-1/2 w-robustfull items-center"
+          className="flex flex-col justify-center  lg:w-1/2 w-full items-center"
           data-aos="flip-down"
           data-aos-duration="800"
         >
-          <img src={images.mouse} alt="share" className="w-72 h-72 lg:w-3/4 aspect-auto" />
+          <img src={images.mouse} alt="share" className="w-72 h-72  aspect-auto lg:w-96 lg:h-96" />
         </div>
       </div>
     </div>

@@ -1,6 +1,7 @@
-import React,{useEffect} from 'react';
+import React, { useEffect, useState } from 'react';
 import images from '../../../constants/imageConstant';
-const EvalitTests = () => {
+const EvalitTests = ({ setActiveTab, setIsEvalitActive, isEvalitActive,scrollDirection }) => {
+  // const [changedOnce, setChangedOnce] = useState(isEvalitActive);
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
@@ -8,23 +9,28 @@ const EvalitTests = () => {
 
       if (titleElement) {
         const titlePosition = titleElement.offsetTop;
-        if(scrollPosition >= titlePosition -130 ){
-          console.log('You have scrolled to the evalit section');
+        if (scrollPosition >= titlePosition - 130 && scrollDirection === 'down') {
+          setIsEvalitActive(true);
+        } else if ( scrollDirection === 'up' && scrollPosition < titlePosition - 130) {
+          setIsEvalitActive(false);
+          setActiveTab(0);
         }
       }
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [isEvalitActive,  setIsEvalitActive,scrollDirection]);
   return (
     <div className="flex justify-center -z-20 mt-10" id={'evalit_tests'}>
       <div className="flex justify-evenly w-full flex-col lg:flex-row overflow-hidden ">
-        <div className="flex flex-col justify-center items-center lg:w-1/2   font-karma text-center" data-aos="flip-left"
+        <div
+          className="flex flex-col justify-center items-center lg:w-1/2   font-karma text-center"
+          data-aos="flip-left"
           data-aos-duration="800"
         >
           <div className="flex gap-10 flex-col items-center">
-          <h1 className="lg:text-[2rem] text-[1.7rem] text-secondary font-bold font-karma  tracking-wider w-full lg:p-0 lg:w-2/3 lg:leading-[50px]">
+            <h1 className="lg:text-[2rem] text-[1.7rem] text-secondary font-bold font-karma  tracking-wider w-full lg:p-0 lg:w-2/3 lg:leading-[50px]">
               Pre-configured tests designed by experienced developers
             </h1>
             <p className="text-gray-55 lg:text-[1.3rem] text-[1.2rem]  tracking-wide w-3/4 font-medium lg:leading-10 leading-0">
@@ -34,18 +40,35 @@ const EvalitTests = () => {
           </div>
           <div className="flex flex-col  justify-start w-2/3">
             <div className="w-1/2 flex p-2 justify-center ml-4">
-              <img src={images.amazon} alt="evalitTests1" className='w-36 aspect-auto '/>
-              <img src={images.directi} alt="evalitTests2" className='w-36 aspect-auto '/>
-
+              <img
+                src={images.amazon}
+                alt="evalitTests1"
+                className="w-36 aspect-auto "
+              />
+              <img
+                src={images.directi}
+                alt="evalitTests2"
+                className="w-36 aspect-auto "
+              />
             </div>
             <div className="w-full flex justify-end lg:p-2 ml-16 lg:ml-0">
-
-              <img src={images.walmart} alt="evalitTests3" className='w-36 aspect-auto '/>
-              <img src={images.pwc} alt="evalitTests4" className='w-36 aspect-auto '/>
+              <img
+                src={images.walmart}
+                alt="evalitTests3"
+                className="w-36 aspect-auto "
+              />
+              <img
+                src={images.pwc}
+                alt="evalitTests4"
+                className="w-36 aspect-auto "
+              />
             </div>
           </div>
         </div>
-        <div className="lg:flex flex-col justify-center gap-2 lg:w-1/2 w-full font-karma hidden " data-aos="flip-right">
+        <div
+          className="lg:flex flex-col justify-center gap-2 lg:w-1/2 w-full font-karma hidden "
+          data-aos="flip-right"
+        >
           <div className="overflow-x-auto font-karam flex lg:w-full flex-col items-center justify-center w-1/2 ">
             <table className="w-4/5 text-sm text-left mb-20">
               <thead className="text-md font-light bg-tertiary ">
@@ -80,7 +103,6 @@ const EvalitTests = () => {
                   <td className="px-6 py-4">1</td>
                   <td className="px-6 py-4">Easy</td>
                 </tr>
-
 
                 <tr className="bg-white ">
                   <th
