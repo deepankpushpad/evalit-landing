@@ -20,7 +20,8 @@ const TabsSection = () => {
 
     const handleScroll = () => {
       const currentScrollPosition = window.pageYOffset;
-      const currentScrollDirection = currentScrollPosition > prevScrollPosition ? "down" : "up";
+      const currentScrollDirection =
+        currentScrollPosition > prevScrollPosition ? 'down' : 'up';
       prevScrollPosition = currentScrollPosition;
       const scrollPosition = window.scrollY;
       const titleElement = document.getElementById('sectionTitle');
@@ -36,8 +37,8 @@ const TabsSection = () => {
         setIsMobile(false);
         return;
       }
-      if(!isMobile && scrollPosition < 800){
-        console.log("here");
+      if (!isMobile && scrollPosition < 800) {
+        console.log('here');
         setIsRoleActive(false);
         setIsEvalitActive(false);
         setIsSettingsActive(false);
@@ -51,44 +52,63 @@ const TabsSection = () => {
 
       if (titleElement) {
         const titlePosition = titleElement.offsetTop;
-        if(!isSuperPowerActive){
-        if (window.innerWidth < 1024) {
-          setIsTitleFixed(scrollPosition >= titlePosition + 65);
-          setIsMobile(true);
-          return;
+        if (!isSuperPowerActive) {
+          if (window.innerWidth < 1024) {
+            setIsTitleFixed(scrollPosition >= titlePosition + 65);
+            setIsMobile(true);
+            return;
+          }
+          setIsTitleFixed(scrollPosition >= titlePosition - 30);
         }
-        setIsTitleFixed(scrollPosition >= titlePosition - 30);
-
       }
-    }
-
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [scrollDirection ,activeTab,isTitleFixed,isSuperPowerActive]);
+  }, [scrollDirection, activeTab, isTitleFixed, isSuperPowerActive]);
 
   const handleTabChange = () => {
-    if(scrollDirection === 'down'){
-    if (
-      isRoleActive &&
-      !isEvalitActive &&
-      !isSettingsActive &&
-      !isShareActive &&
-      activeTab === -1
-    ) {
-      setActiveTab(0);
+    if (scrollDirection === 'down') {
+      if (
+        isRoleActive &&
+        !isEvalitActive &&
+        !isSettingsActive &&
+        !isShareActive &&
+        activeTab === -1
+      ) {
+        setActiveTab(0);
+      }
+      if (
+        isRoleActive &&
+        isEvalitActive &&
+        !isSettingsActive &&
+        !isShareActive &&
+        scrollDirection === 'down' &&
+        activeTab === 0
+      ) {
+        setActiveTab(1);
+      }
+      if (
+        isRoleActive &&
+        isEvalitActive &&
+        isSettingsActive &&
+        !isShareActive &&
+        scrollDirection === 'down' &&
+        activeTab === 1
+      ) {
+        setActiveTab(2);
+      }
+      if (
+        isRoleActive &&
+        isEvalitActive &&
+        isSettingsActive &&
+        isShareActive &&
+        scrollDirection === 'down' &&
+        activeTab === 2
+      ) {
+        setActiveTab(3);
+      }
     }
-    if (isRoleActive && isEvalitActive && !isSettingsActive && !isShareActive && scrollDirection === 'down' && activeTab === 0) {
-      setActiveTab(1);
-    }
-    if (isRoleActive && isEvalitActive && isSettingsActive && !isShareActive && scrollDirection === 'down' && activeTab === 1) {
-      setActiveTab(2);
-    }
-    if (isRoleActive && isEvalitActive && isSettingsActive && isShareActive && scrollDirection === 'down' && activeTab === 2) {
-      setActiveTab(3);
-    }
-  }
   };
   useEffect(() => {
     handleTabChange();
@@ -135,107 +155,110 @@ const TabsSection = () => {
             'fixed top-0 left-0 right-0 bg-white z-10 shadow-md mt-16 lg:mt-28 border-t-[1px] lg:border-gray-72'
           } `}
         >
-      {isTitleFixed && (
-          <div className="flex justify-center items-center w-full ">
+          {isTitleFixed && (
             <div className="flex justify-center items-center w-full ">
-
-              <ul className="flex justify-between items-center w-full  lg:justify-evenly ">
-                {componentData.map((item, index) => {
-                  return (
-                    <li
-                      className={` ${
-                        isTitleFixed
-                          ? 'text-secondary ease-in-out flex items-center justify-center flex-col '
-                          : 'text-center text-lg font-light font-roboto text-secondary  ml-2 mr-2 cursor-pointer  flex justify-center items-center flex-col lg:flex-row lg:w-full w-4/5 '
-                      }`}
-                      key={index}
-                      data-aos="zoom-in"
-                      data-aos-delay={index * 200}
-                      data-aos-duration="1000"
-                      data-aos-easing="ease-in-out"
-                      onClick={() => {
-                        // navigate(`${item.id}`, 170);
-                        if(isMobile){
-                        if(item.title === 'Roles')
-                        {
-                          navigate(`${item.id}`, 170);
-                        }
-                        else if(item.title === 'Evalit Tests')
-                        {
-                          navigate(`${item.id}`, 270);
-                        }
-                        else if(item.title === 'Settings')
-                        {
-                          navigate(`${item.id}`, 170);
-                        }
-                        else if(item.title === 'Share')
-                        {
-                          navigate(`${item.id}`, 170);
-                        }
-                        }
-                        else{
-                          navigate(`${item.id}`, 170);
-                        }
-
-                      }}
-                    >
-                    <div className={`flex justify-center items-center flex-col lg:flex-row  ${
-                          activeTab === 0 && item.title === 'Roles'
-                            ? 'scale-150  p-2 ' + isTitleFixed ? ' m-2 scale-125' : 'border-none'
-                            : activeTab === 1 && item.title === 'Evalit Tests'
-                            ? 'scale-150  p-2 ' + isTitleFixed ? ' m-2 scale-125' : 'border-none'
-                            : activeTab === 2 && item.title === 'Settings'
-                            ? 'scale-150  p-2 ' + isTitleFixed ? ' m-2 scale-125' : 'border-none'
-                            : activeTab === 3 && item.title === 'Share'
-                            ? 'scale-150  p-2 ' + isTitleFixed ? ' m-2 scale-125' : 'border-none'
-                            : 'scale-100 border-none'
+              <div className="flex justify-center items-center w-full ">
+                <ul className="flex justify-between items-center w-full  lg:justify-evenly ">
+                  {componentData.map((item, index) => {
+                    return (
+                      <li
+                        className={` ${
+                          isTitleFixed
+                            ? 'text-secondary ease-in-out flex items-center justify-center flex-col '
+                            : 'text-center text-lg font-light font-roboto text-secondary  ml-2 mr-2 cursor-pointer  flex justify-center items-center flex-col lg:flex-row lg:w-full w-4/5 '
                         }`}
-
-                    >
-
-
-                      <img
-                        src={item.image}
-                        alt="icon"
-                        className={` aspect-auto ${
-                          isTitleFixed ? 'aspect-auto w-[50px] ' : 'aspect-auto lg:w-[100px] w-[40px] '
-                        }
+                        key={index}
+                        data-aos="zoom-in"
+                        data-aos-delay={index * 200}
+                        data-aos-duration="1000"
+                        data-aos-easing="ease-in-out"
+                        onClick={() => {
+                          // navigate(`${item.id}`, 170);
+                          if (isMobile) {
+                            if (item.title === 'Roles') {
+                              navigate(`${item.id}`, 170);
+                            } else if (item.title === 'Evalit Tests') {
+                              navigate(`${item.id}`, 270);
+                            } else if (item.title === 'Settings') {
+                              navigate(`${item.id}`, 170);
+                            } else if (item.title === 'Share') {
+                              navigate(`${item.id}`, 170);
+                            }
+                          } else {
+                            navigate(`${item.id}`, 170);
+                          }
+                        }}
+                      >
+                        <div
+                          className={`flex justify-center items-center flex-col lg:flex-row  ${
+                            activeTab === 0 && item.title === 'Roles'
+                              ? 'scale-150  p-2 ' + isTitleFixed
+                                ? ' m-2 scale-125'
+                                : 'border-none'
+                              : activeTab === 1 && item.title === 'Evalit Tests'
+                              ? 'scale-150  p-2 ' + isTitleFixed
+                                ? ' m-2 scale-125'
+                                : 'border-none'
+                              : activeTab === 2 && item.title === 'Settings'
+                              ? 'scale-150  p-2 ' + isTitleFixed
+                                ? ' m-2 scale-125'
+                                : 'border-none'
+                              : activeTab === 3 && item.title === 'Share'
+                              ? 'scale-150  p-2 ' + isTitleFixed
+                                ? ' m-2 scale-125'
+                                : 'border-none'
+                              : 'scale-100 border-none'
+                          }`}
+                        >
+                          <img
+                            src={item.image}
+                            alt="icon"
+                            className={` aspect-auto ${
+                              isTitleFixed
+                                ? 'aspect-auto w-[50px] '
+                                : 'aspect-auto lg:w-[100px] w-[40px] '
+                            }
 
   `}
-                      />
-                      <p
-                        // className="lg:text-2xl text-lg font-light font-roboto text-secondary  ml-2 mr-2 cursor-pointer  flex justify-center items-center  "
-                        className={`ml-2 mr-2 ${
-                          isTitleFixed && 'text-lg '
-                        }
+                          />
+                          <p
+                            // className="lg:text-2xl text-lg font-light font-roboto text-secondary  ml-2 mr-2 cursor-pointer  flex justify-center items-center  "
+                            className={`ml-2 mr-2 ${isTitleFixed && 'text-lg '}
 
 
                         ${
                           activeTab === 0 && item.title === 'Roles'
-                            ? 'scale-150  p-2 ' + isTitleFixed ? ' m-2 scale-125  lg:p-2 font-bold bg-clip-text bg-gradient-primary text-transparent font-kalam text-3xl ' : 'border-none'
+                            ? 'scale-150  p-2 ' + isTitleFixed
+                            //activate tooltip
+                              ? ' m-2 scale-125   lg:p-1 font-bold bg-clip-text bg-gradient-primary text-transparent font-kalam text-3xl '
+                              : 'border-none'
                             : activeTab === 1 && item.title === 'Evalit Tests'
-                            ? 'scale-150  p-2 ' + isTitleFixed ? ' m-2 scale-125 lg:p-2 font-bold bg-clip-text bg-gradient-primary text-transparent font-kalam text-3xl' : 'border-none'
+                            ? 'scale-150  p-2 ' + isTitleFixed
+                              ? ' m-2 scale-125  lg:p-1 font-bold bg-clip-text bg-gradient-primary text-transparent font-kalam text-3xl '
+                              : 'border-none'
                             : activeTab === 2 && item.title === 'Settings'
-                            ? 'scale-150  p-2 ' + isTitleFixed ? ' m-2 scale-125 lg:p-2 font-bold bg-clip-text bg-gradient-primary text-transparent font-kalam text-3xl' : 'border-none'
+                            ? 'scale-150  p-2 ' + isTitleFixed
+                              ? ' m-2 scale-125  lg:p-1 font-bold bg-clip-text bg-gradient-primary text-transparent font-kalam text-3xl '
+                              : 'border-none'
                             : activeTab === 3 && item.title === 'Share'
-                            ? 'scale-150  p-2 ' + isTitleFixed ? ' m-2 scale-125 lg:p-2 font-bold bg-clip-text bg-gradient-primary text-transparent font-kalam text-3xl' : 'border-none'
+                            ? 'scale-150  p-2 ' + isTitleFixed
+                              ? ' m-2 scale-125  lg:p-1 font-bold bg-clip-text bg-gradient-primary text-transparent font-kalam text-3xl '
+                              : 'border-none'
                             : 'scale-100 border-none'
                         }
 
                        `}
-
-                      >
-                        {item.title}
-                      </p>
-                      </div>
-                    </li>
-                  );
-                })}
-              </ul>
-
+                          >
+                            {item.title}
+                          </p>
+                        </div>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
             </div>
-          </div>
-      )}
+          )}
         </div>
         <div className="flex justify-center items-center w-full mt-10 ">
           <Role
@@ -248,9 +271,7 @@ const TabsSection = () => {
             isTitleFixed={isTitleFixed}
             setIsSuperPowerActive={setIsSuperPowerActive}
             isSuperPowerActive={isSuperPowerActive}
-
           />
-
         </div>
         <div className="flex justify-center items-center w-full mt-10 ">
           <EvalitTests
