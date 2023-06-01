@@ -178,7 +178,7 @@ const TabsSection = () => {
                             if (item.title === 'Roles') {
                               navigate(`${item.id}`, 170);
                             } else if (item.title === 'Evalit Tests') {
-                              navigate(`${item.id}`, 270);
+                              navigate(`${item.id}`, 170);
                             } else if (item.title === 'Settings') {
                               navigate(`${item.id}`, 170);
                             } else if (item.title === 'Share') {
